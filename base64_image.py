@@ -3,7 +3,7 @@ from PIL import Image
 import io
 
 fileName = "amazon-logo.png"
-imageType = "PNG"
+imageType = "PNG" # You can change JPEG to PNG depending on the format you need
 
 def image_to_base64(image_path):
     # Open the image
@@ -16,7 +16,6 @@ def image_to_base64(image_path):
         # Create a bytes buffer for the image
         buffer = io.BytesIO()
         # Save the image to the buffer
-        #img_converted.save(buffer, format='PNG')  # You can change JPEG to PNG depending on the format you need
         img_converted.save(buffer, format=imageType)
 
         # Convert binary data to base64-encoded string
