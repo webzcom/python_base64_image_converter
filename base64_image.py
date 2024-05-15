@@ -9,11 +9,15 @@ def image_to_base64(image_path):
     # Open the image
     with Image.open(image_path) as image:
         # Convert the image to RGB format (to ensure compatibility)
-        img_converted = image.convert('RGB')
+        if imageType == 'PNG':
+            img_converted = image.convert('RGBA')
+        else:
+            img_converted = image.convert('RGB')
         # Create a bytes buffer for the image
         buffer = io.BytesIO()
         # Save the image to the buffer
-        img_converted.save(buffer, format='PNG')  # You can change JPEG to PNG depending on the format you need
+        #img_converted.save(buffer, format='PNG')  # You can change JPEG to PNG depending on the format you need
+        img_converted.save(buffer, format=imageType)
 
         # Convert binary data to base64-encoded string
         b64_string = base64.b64encode(buffer.getvalue()).decode('utf-8')
