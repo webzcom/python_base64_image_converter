@@ -2,8 +2,8 @@ import base64
 from PIL import Image
 import io
 
-fileName = "amazon-logo.png"
-imageType = "PNG" # You can change JPEG to PNG depending on the format you need
+fileName = "sams_club_240x240.png"
+imageType = "PNG"
 
 def image_to_base64(image_path):
     # Open the image
@@ -11,11 +11,14 @@ def image_to_base64(image_path):
         # Convert the image to RGB format (to ensure compatibility)
         if imageType == 'PNG':
             img_converted = image.convert('RGBA')
+            alpha = image.getchannel('A')
+            img_converted.putalpha(alpha)
         else:
             img_converted = image.convert('RGB')
         # Create a bytes buffer for the image
         buffer = io.BytesIO()
         # Save the image to the buffer
+        #img_converted.save(buffer, format='PNG')  # You can change JPEG to PNG depending on the format you need
         img_converted.save(buffer, format=imageType)
 
         # Convert binary data to base64-encoded string
